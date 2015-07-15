@@ -1,14 +1,11 @@
 <?php
 
-use Behat\Behat\Context\Context;
-use Behat\Behat\Context\CustomSnippetAcceptingContext;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
+use Behat\MinkExtension\Context\MinkContext;
 
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext implements Context, CustomSnippetAcceptingContext
+class FeatureContext extends  MinkContext
 {
     /**
      * Initializes context.
@@ -22,9 +19,15 @@ class FeatureContext implements Context, CustomSnippetAcceptingContext
     }
 
 
-    public static function getAcceptedSnippetType()
+    /**
+     * Wait the specified number of seconds
+     *
+     *@When /^I wait (\d*) seconds$/
+     */
+    public function iWait($timeToWait)
     {
-        return 'regex';
+        $session = $this->getSession();
+        $session->wait(($timeToWait * 1000), false);
     }
 
 }
