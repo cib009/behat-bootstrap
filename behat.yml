@@ -1,0 +1,14 @@
+default:
+    translation:
+        locale: "en"
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://www.google.com
+            goutte: ~
+            default_session: selenium2
+            browser_name: 'firefox'
+            show_cmd: 'firefox %s'
+            selenium2:
+               wd_host: 'http://localhost:4444/wd/hub'
+               capabilities:
+                   version : ''
